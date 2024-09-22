@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg{
+    background-image: url('./images/Designer.png');
+    background-size: cover;
+} 
+
+.overlay{
+    background: rgb(77,73,78);
+    background: linear-gradient(106deg, rgba(34, 33, 35, 0.9) 19%, rgba(46, 44, 44, 0.2) 100%);
+}
