@@ -18,12 +18,13 @@ const registerUser = asyncHandler(async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = await User.create({name, email, password:  hashedPassword});
     if(user){
+        const jwt = generateToken(user._id);
         res.status(201).json({
             _id: user.id,
             name: user.name,
             email: user.email,
-            token: generateToken(user._id)
-        })
+            token: jwt
+        });
     }
     else{
         res.status(400)
@@ -35,11 +36,12 @@ const loginUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
     const user = await User.findOne({email});
     if(user && (await bcrypt.compare(password, user.password))){
+        const jwt = generateToken(user._id)
         res.status(200).json({
             _id: user.id,
             name: user.name,
             email: user.email,
-            token: generateToken(user._id)
+            token: jwt
         })
     }
     else{
