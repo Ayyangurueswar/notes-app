@@ -31,10 +31,10 @@ const AddNote = () => {
     textArea.style.height = `${textArea.scrollHeight}px`;
   }
   return (
-    <div className={`w-[600px] min-h-[250px] h-auto mx-auto border-2 border-slate-500 rounded-md px-4 ${editing && 'flex items-center justify-center'}`}>
+    <div className={`max-w-[600px] w-3/4 min-h-[250px] h-auto mx-auto border-2 dark:border-slate-200 border-indigo-400 rounded-md px-4 ${editing && 'flex items-center justify-center'} shadow-md dark:shadow-slate-200 shadow-indigo-700`}>
         {
             editing ?
-                <button onClick={() => {setEditing(false)}} className='w-[50px] h-[50px] rounded-full text-2xl border-2 border-indigo-500'>
+                <button onClick={() => {setEditing(false)}} className='w-[50px] h-[50px] rounded-full text-2xl border-2 border-indigo-500 hover:shadow-md hover:shadow-indigo-700 transition duration-500'>
                   <span className='block -mt-1'>+</span>
                 </button>
              : (

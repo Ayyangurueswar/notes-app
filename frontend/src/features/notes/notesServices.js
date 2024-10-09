@@ -22,6 +22,30 @@ const getNotes = async (user) => {
     return res;
 }
 
-const notesService = {addNote, getNotes}
+const editNote = async (req) => {
+    const reqs = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${req.note.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${req.userId}`,
+        },
+        body: JSON.stringify({title: req.note.title, text: req.note.text})
+    });
+    const res = await reqs.json();
+    return res;
+}
+
+const deleteNote = async (req) => {
+    const reqs = await fetch(`${process.env.REACT_APP_API_URL}/api/notes/${req.noteId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${req.userId}`,
+        },
+    });
+    const res = await reqs.json();
+    return res;
+}
+
+const notesService = {addNote, getNotes, editNote, deleteNote}
 
 export default notesService;

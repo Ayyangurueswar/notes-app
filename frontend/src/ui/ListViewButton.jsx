@@ -3,7 +3,7 @@ import {motion, AnimatePresence} from 'framer-motion'
 
 const ListViewButton = ({listView, handleListView}) => {
   return (
-    <button onClick={handleListView} className='h-[35px] w-[35px] overflow-hidden'>
+    <button onClick={handleListView} className='h-[35px] w-[35px] overflow-hidden max-lg:hidden'>
         {
             <>
             <AnimatePresence>

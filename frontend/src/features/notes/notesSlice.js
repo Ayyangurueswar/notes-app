@@ -28,6 +28,26 @@ export const getNotes = createAsyncThunk('notes/get', async(user, thunkAPI) => {
     }
 })
 
+export const editNote = createAsyncThunk('notes/edit', async(req, thunkAPI) => {
+    try{
+        return await notesService.editNote(req);
+    }
+    catch(e){
+        const message = (e.response && e.response.data && e.response.data.message) || e.message || e.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+})
+
+export const deleteNote = createAsyncThunk('notes/delete', async(req, thunkAPI) => {
+    try{
+        return await notesService.deleteNote(req);
+    }
+    catch(e){
+        const message = (e.response && e.response.data && e.response.data.message) || e.message || e.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+})
+
 export const notesSlice = createSlice({
     name: "notes",
     initialState,
@@ -51,6 +71,30 @@ export const notesSlice = createSlice({
             state.isError = false;
             state.notes = action.payload;
         }).addCase(getNotes.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        }).addCase(editNote.pending, (state) => {
+            state.isLoading = true;
+            state.isError = false;
+        }).addCase(editNote.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isError = false;
+            const updatedNote = state.notes.find(note => note._id === action.payload._id);
+            updatedNote.title = action.payload.title;
+            updatedNote.content = action.payload.content;
+        }).addCase(editNote.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = action.payload;
+        }).addCase(deleteNote.pending, (state) => {
+            state.isLoading = true;
+            state.isError = false;
+        }).addCase(deleteNote.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isError = false;
+            state.notes = state.notes.filter(note => note._id!== action.payload._id);
+        }).addCase(deleteNote.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
             state.message = action.payload;

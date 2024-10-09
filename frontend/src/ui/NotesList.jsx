@@ -6,7 +6,7 @@ import Note from './Note';
 const NotesList = () => {
   const { notes } = useSelector((state) => state.notes);
   const { user } = useSelector((state) => state.auth);
-  const {searchTerm} = useSelector((state) => state.app);
+  const {searchTerm, listView} = useSelector((state) => state.app);
   const [noteList, setNoteList] = useState(notes);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,11 +21,13 @@ const NotesList = () => {
     }
    }, [notes, searchTerm]);
   return (
-    <div className='w-full px-6 max-w-[1250px] mx-auto grid grid-cols-3 gap-10 pb-6'>
+    <div className={`w-full px-6 mx-auto grid gap-10 pb-6 ${listView ? 'grid-cols-1 max-w-[900px]' : 'xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 max-w-[1250px]'}`}>
         {
-            noteList.map((note) => (
-                <Note note={note} key={note._id}/>
-            ))
+            noteList.length > 0 ? noteList.map((note) => (
+                <Note note={note} key={note._id} user={user}/>
+            )) : (
+              <div className='text-center text-lg font-semibold'>No notes found.</div>
+            )
         }
     </div>
   )
