@@ -16,7 +16,7 @@ const Header = () => {
     dispatch(toggleLightMode());
   }
   return (
-    <div className='w-full md:px-10 px-3 md:py-5 py-4 flex items-center justify-between dark:text-white duration-500 sticky top-0 backdrop-blur'>
+    <div className='w-full max-w-[1250px] mx-auto md:px-10 px-3 md:py-5 py-4 flex items-center justify-between dark:text-white duration-500 sticky top-0 backdrop-blur'>
         <h1 className='font-semibold text-3xl max-sm:hidden'>Notes</h1>
         <SliderBtn />
         <div className='sm:w-2/5 w-7/12 max-sm:mx-auto relative -z-10'>

@@ -51,6 +51,13 @@ export const deleteNote = createAsyncThunk('notes/delete', async(req, thunkAPI) 
 export const notesSlice = createSlice({
     name: "notes",
     initialState,
+    reducers: {
+        reset: (state) => {
+            state.isError = false;
+            state.isLoading = false;
+            state.message = '';
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(addNote.pending, (state) => {
             state.isLoading = true;
@@ -75,7 +82,6 @@ export const notesSlice = createSlice({
             state.isError = true;
             state.message = action.payload;
         }).addCase(editNote.pending, (state) => {
-            state.isLoading = true;
             state.isError = false;
         }).addCase(editNote.fulfilled, (state, action) => {
             state.isLoading = false;
@@ -103,3 +109,4 @@ export const notesSlice = createSlice({
 })
 
 export default notesSlice.reducer;
+export const {reset} = notesSlice.actions;
