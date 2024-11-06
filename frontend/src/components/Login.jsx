@@ -27,12 +27,12 @@ const Login = () => {
         <h1 className='text-white text-4xl font-semibold'>Login</h1>
         <form className='flex flex-col gap-3'>
             <div>
-                <label htmlFor='email' className='mb-2'>Email</label>
+                <label htmlFor='email' className='mb-2 text-white'>Email</label>
                 <input type='email' id='email' className='w-full px-4 py-2 outline-none rounded-md text-black' placeholder='Enter your email' 
                 onChange={(e) => {setEmail(e.target.value)}} value={email}/>
             </div>
             <div>
-                <label htmlFor='password' className='mb-2'>Password</label>
+                <label htmlFor='password' className='mb-2 text-white'>Password</label>
                 <input type='password' id='password' className='w-full px-4 py-2 outline-none rounded-md text-black' placeholder='Enter your password' 
                 onChange={(e) => {setPassword(e.target.value)}} value={password}/>
             </div>

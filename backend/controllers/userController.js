@@ -33,7 +33,8 @@ const registerUser = asyncHandler(async (req, res) => {
 })
 
 const loginUser = asyncHandler(async (req, res) => {
-    const {email, password} = req.body;
+    const {body} = req;
+    const {email, password} = body;
     const user = await User.findOne({email});
     if(user && (await bcrypt.compare(password, user.password))){
         const jwt = generateToken(user._id)

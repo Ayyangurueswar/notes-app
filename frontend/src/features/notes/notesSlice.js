@@ -82,13 +82,13 @@ export const notesSlice = createSlice({
             state.isError = true;
             state.message = action.payload;
         }).addCase(editNote.pending, (state) => {
+            state.isLoading = true;
             state.isError = false;
         }).addCase(editNote.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isError = false;
-            const updatedNote = state.notes.find(note => note._id === action.payload._id);
-            updatedNote.title = action.payload.title;
-            updatedNote.content = action.payload.content;
+            const oldNotes = state.notes.filter(note => note._id !== action.payload._id);
+            state.notes = [...oldNotes, action.payload]
         }).addCase(editNote.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
