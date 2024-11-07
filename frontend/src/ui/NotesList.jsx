@@ -10,7 +10,9 @@ const NotesList = () => {
   const [noteList, setNoteList] = useState(notes);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getNotes(user));
+    if(user){
+      dispatch(getNotes(user));
+    }
     if(isError){
       alert(message);
       dispatch(reset());

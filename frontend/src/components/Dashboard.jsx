@@ -13,6 +13,7 @@ const Dashboard = () => {
   useEffect(() => {
     if(isError){
         alert(message);
+        return;
     }
     if(!user){
         navigate('/login');
