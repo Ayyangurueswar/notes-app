@@ -11,5 +11,7 @@
         "source": "/(.*)",
         "destination": "/api"
       }
-    ]
+    ],
+    "buildCommand": "npm run build --prefix frontend",
+    "installCommand": "npm install --prefix frontend && npm install"
 }
