@@ -12,6 +12,6 @@
         "destination": "/api"
       }
     ],
-    "buildCommand": "npm run build --prefix frontend",
+    "buildCommand": "npm run build",
     "installCommand": "npm install --prefix frontend && npm install"
 }

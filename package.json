@@ -2,8 +2,9 @@
   "name": "notes-app",
   "version": "1.0.0",
   "description": "A simple note taking app",
-  "main": "backend/api/index.js",
+  "main": "api/index.js",
   "scripts": {
+    "build": "npm build --prefix frontend",
     "start": "node backend/api/index.js",
     "server": "nodemon backend/api/index.js",
     "client": "npm start --prefix frontend"
