@@ -19,6 +19,7 @@ function App() {
               <Route path='/login' element={<Login />} />
             </Route>
             <Route path='/dashboard' element={<Dashboard />}/>
+            <Route path='*' element={<p>404 - route not found</p>} />
           </Routes>
       </div>
     </Router>

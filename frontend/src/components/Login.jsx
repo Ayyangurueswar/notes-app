@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { motion } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { login, reset } from '../features/auth/authSlice'
 
 const Login = () => {
@@ -37,7 +37,8 @@ const Login = () => {
                 onChange={(e) => {setPassword(e.target.value)}} value={password}/>
             </div>
         </form>
-        <button className='w-1/5 px-4 py-2 text-white hover:bg-indigo-800 transition-colors duration-300 font-semibold bg-indigo-600 rounded-md' onClick={handleSubmit} disabled={isLoading}>Login</button>    
+        <button className='w-1/5 px-4 py-2 text-white hover:bg-indigo-800 transition-colors duration-300 font-semibold bg-indigo-600 rounded-md' onClick={handleSubmit} disabled={isLoading}>Login</button>
+        <p className='text-white'>Don't have an account? <Link to='/register' className='underline'>Register</Link></p>   
     </motion.div>
   )
 }
